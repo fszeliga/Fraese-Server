@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using De.Boenigk.SMC5D.Basics;
-
+using System.Xml;
 
 namespace WebServer
 {
@@ -290,16 +290,17 @@ namespace WebServer
         {
 
             //connector.
+            XmlDocument doc = new XmlDocument();
+            XmlElement bookElement = doc.CreateElement("book", "http://www.contoso.com/books"); ///< book xmlns = "http://www.contoso.com/books" />
+            doc.AppendChild(bookElement);
 
-            if (p.http_url.Equals("/Test.png"))
-            {
-                Stream fs = File.Open("../../Test.png", FileMode.Open);
+            XmlTextWriter writer = new XmlTextWriter(p.outputStream);
+            writer.Formatting = Formatting.Indented;
+            doc.WriteTo(writer);
+            writer.Flush();
+            Console.WriteLine();
 
-                p.writeSuccess("image/png");
-                fs.CopyTo(p.outputStream.BaseStream);
-                p.outputStream.BaseStream.Flush();
-            }
-
+            /*
             Console.WriteLine("request: {0}", p.http_url);
             p.writeSuccess();
             p.outputStream.WriteLine("<html><body><h1>test server</h1>");
@@ -310,6 +311,7 @@ namespace WebServer
             p.outputStream.WriteLine("<input type=text name=foo value=foovalue>");
             p.outputStream.WriteLine("<input type=submit name=bar value=barvalue>");
             p.outputStream.WriteLine("</form>");
+            */
         }
 
         public override void handlePOSTRequest(HttpProcessor p, StreamReader inputData)

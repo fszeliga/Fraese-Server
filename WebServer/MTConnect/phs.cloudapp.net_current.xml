@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectStreams xmlns:m="urn:mtconnect.org:MTConnectStreams:1.2" xmlns="urn:mtconnect.org:MTConnectStreams:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectStreams:1.2 http://www.mtconnect.org/schemas/MTConnectStreams_1.2.xsd">
+  <Header creationTime="2015-10-19T09:11:26Z" sender="phs" instanceId="1444914175" version="1.2.0.5" bufferSize="131072" nextSequence="32" firstSequence="1" lastSequence="31"/>
+  <Streams>
+    <DeviceStream name="Haas1" uuid="">
+      <ComponentStream component="Rotary" name="C" componentId="c">
+        <Samples>
+          <SpindleSpeed dataItemId="id3" timestamp="2015-10-15T13:03:46.664" name="sspeed" sequence="28" subType="ACTUAL">UNAVAILABLE</SpindleSpeed>
+        </Samples>
+        <Events>
+          <RotaryMode dataItemId="cm" timestamp="2015-10-15T13:02:55.0336Z" name="Cmode" sequence="3">SPINDLE</RotaryMode>
+        </Events>
+      </ComponentStream>
+      <ComponentStream component="Device" name="Haas1" componentId="id1001">
+        <Events>
+          <AssetChanged dataItemId="asset_chg" timestamp="2015-10-15T13:02:55.0336Z" sequence="1" assetType="">UNAVAILABLE</AssetChanged>
+          <Availability dataItemId="avail" timestamp="2015-10-15T13:03:46.664" sequence="23">UNAVAILABLE</Availability>
+          <EmergencyStop dataItemId="id15" timestamp="2015-10-15T13:03:46.664" name="estop" sequence="24">UNAVAILABLE</EmergencyStop>
+        </Events>
+      </ComponentStream>
+      <ComponentStream component="Path" name="path" componentId="pth">
+        <Events>
+          <Execution dataItemId="id11" timestamp="2015-10-15T13:03:46.664" name="exec" sequence="26">UNAVAILABLE</Execution>
+          <ControllerMode dataItemId="id12" timestamp="2015-10-15T13:03:46.664" name="mode" sequence="25">UNAVAILABLE</ControllerMode>
+          <Program dataItemId="id13" timestamp="2015-10-15T13:03:46.664" name="program" sequence="27">UNAVAILABLE</Program>
+        </Events>
+        <Condition>
+          <Normal dataItemId="id16" timestamp="2015-10-15T13:03:29.344" name="system" sequence="22" type="SYSTEM"/>
+        </Condition>
+      </ComponentStream>
+      <ComponentStream component="Linear" name="X" componentId="x">
+        <Samples>
+          <Position dataItemId="id4" timestamp="2015-10-15T13:03:46.664" name="xact" sequence="29" subType="ACTUAL">UNAVAILABLE</Position>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream component="Linear" name="Y" componentId="y">
+        <Samples>
+          <Position dataItemId="id5" timestamp="2015-10-15T13:03:46.664" name="yact" sequence="30" subType="ACTUAL">UNAVAILABLE</Position>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream component="Linear" name="Z" componentId="z">
+        <Samples>
+          <Position dataItemId="id6" timestamp="2015-10-15T13:03:46.664" name="zact" sequence="31" subType="ACTUAL">UNAVAILABLE</Position>
+        </Samples>
+      </ComponentStream>
+    </DeviceStream>
+  </Streams>
+</MTConnectStreams>

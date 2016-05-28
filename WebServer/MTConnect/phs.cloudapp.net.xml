@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MTConnectDevices xmlns:m="urn:mtconnect.org:MTConnectDevices:1.2" xmlns="urn:mtconnect.org:MTConnectDevices:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.org:MTConnectDevices:1.2 http://www.mtconnect.org/schemas/MTConnectDevices_1.2.xsd">
+  <Header creationTime="2015-10-19T09:11:31Z" sender="phs" instanceId="1444914175" version="1.2.0.5" assetBufferSize="0" assetCount="32" bufferSize="131072"/>
+  <Devices>
+    <Device id="id1001" iso841Class="2" name="Haas1" sampleRate="10">
+      <Description manufacturer="Haas" serialNumber="Serial Number"/>
+      <DataItems>
+        <DataItem category="EVENT" id="avail" type="AVAILABILITY"/>
+        <DataItem category="EVENT" id="asset_chg" type="ASSET_CHANGED"/>
+        <DataItem category="EVENT" id="id15" name="estop" type="EMERGENCY_STOP"/>
+      </DataItems>
+      <Components>
+        <Axes id="id105" name="Axes">
+          <Components>
+            <Rotary id="c" name="C">
+              <DataItems>
+                <DataItem category="SAMPLE" id="id3" name="sspeed" nativeUnits="REVOLUTION/MINUTE" subType="ACTUAL" type="SPINDLE_SPEED" units="REVOLUTION/MINUTE"/>
+                <DataItem category="EVENT" id="cm" name="Cmode" type="ROTARY_MODE">
+                  <Constraints>
+                    <Value>SPINDLE</Value>
+                  </Constraints>
+                </DataItem>
+              </DataItems>
+            </Rotary>
+            <Linear id="x" name="X">
+              <DataItems>
+                <DataItem category="SAMPLE" id="id4" name="xact" nativeUnits="MILLIMETER" subType="ACTUAL" type="POSITION" units="MILLIMETER"/>
+              </DataItems>
+            </Linear>
+            <Linear id="y" name="Y">
+              <DataItems>
+                <DataItem category="SAMPLE" id="id5" name="yact" nativeUnits="MILLIMETER" subType="ACTUAL" type="POSITION" units="MILLIMETER"/>
+              </DataItems>
+            </Linear>
+            <Linear id="z" name="Z">
+              <DataItems>
+                <DataItem category="SAMPLE" id="id6" name="zact" nativeUnits="MILLIMETER" subType="ACTUAL" type="POSITION" units="MILLIMETER"/>
+              </DataItems>
+            </Linear>
+          </Components>
+        </Axes>
+        <Controller id="id106" name="Controller">
+          <Components>
+            <Path id="pth" name="path">
+              <DataItems>
+                <DataItem category="EVENT" id="id11" name="exec" type="EXECUTION"/>
+                <DataItem category="EVENT" id="id12" name="mode" type="CONTROLLER_MODE"/>
+                <DataItem category="EVENT" id="id13" name="program" type="PROGRAM"/>
+                <DataItem category="CONDITION" id="id16" name="system" type="SYSTEM"/>
+              </DataItems>
+            </Path>
+          </Components>
+        </Controller>
+      </Components>
+    </Device>
+  </Devices>
+</MTConnectDevices>
