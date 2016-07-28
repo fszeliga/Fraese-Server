@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.Threading;
 using De.Boenigk.SMC5D.Basics;
 using System.Xml;
+using System.Xml.Serialization;
+using De.Boenigk.SMC5D.Settings;
 
 namespace WebServer
 {
@@ -274,7 +276,7 @@ namespace WebServer
 
         public MyHttpServer(String ip_addr, int port) : base(ip_addr, port)
         {
-            if (!File.Exists("config.xml"))
+            if (!File.Exists("../../vendor/config.xml"))
             {
                 Console.WriteLine("Fatal error: Configuration not found!");
                 //TODO return 0;
@@ -288,17 +290,48 @@ namespace WebServer
         }
         public override void handleGETRequest(HttpProcessor p)
         {
+            //XmlDocument doc = new XmlDocument();
+            //XmlElement bookElement = doc.CreateElement("book", "http://www.contoso.com/books"); ///< book xmlns = "http://www.contoso.com/books" />
+            //doc.AppendChild(bookElement);
 
-            //connector.
-            XmlDocument doc = new XmlDocument();
-            XmlElement bookElement = doc.CreateElement("book", "http://www.contoso.com/books"); ///< book xmlns = "http://www.contoso.com/books" />
-            doc.AppendChild(bookElement);
-
-            XmlTextWriter writer = new XmlTextWriter(p.outputStream);
+           /* XmlTextWriter writer = new XmlTextWriter(p.outputStream);
             writer.Formatting = Formatting.Indented;
             doc.WriteTo(writer);
             writer.Flush();
-            Console.WriteLine();
+            Console.WriteLine();*/
+        
+            Console.WriteLine("****** start SMCSettings ******");
+            //Console.WriteLine(connector.SMCSettings);
+
+            //De.Boenigk.SMC5D.Basics.Log log = new Log(true);
+
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(SMCSettings));
+            XmlTextWriter writer = new XmlTextWriter(p.outputStream);
+            writer.Formatting = Formatting.Indented;
+
+            using (StringWriter sww = new StringWriter())
+            using (XmlWriter w = XmlWriter.Create(sww))
+            {
+                xsSubmit.Serialize(w, ConnectorUtility.GetConnectorSettings());
+                var xml = sww.ToString(); // Your XML
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(xml);
+                doc.WriteTo(writer);
+                writer.Flush();
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("connector.IsSpindleOn: " + ConnectorUtility.GetConnector().IsSpindleOn());
+            //Console.WriteLine("connector.IsUSB: " + ConnectorUtility.GetConnector().IsUSB);
+            Console.WriteLine("Volt 1: " + ConnectorUtility.GetConnector().AD1Volt);
+            Console.WriteLine("Volt 2: " + ConnectorUtility.GetConnector().AD2Volt);
+            Console.WriteLine("GlobPos SpindleSpeed: " + ConnectorUtility.GetConnector().GlobPosition.SpindleSpeed);
+            Console.WriteLine("GlobPos X: " + ConnectorUtility.GetConnector().GlobPosition.X);
+            Console.WriteLine("GlobPos Y: " + ConnectorUtility.GetConnector().GlobPosition.Y);
+            Console.WriteLine("GlobPos Z: " + ConnectorUtility.GetConnector().GlobPosition.Z);
+
+            Console.WriteLine("****** end SMCSettings ******");
+
 
             /*
             Console.WriteLine("request: {0}", p.http_url);

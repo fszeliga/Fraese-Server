@@ -15,7 +15,7 @@ namespace WebServer
             if (instance == null)
             {
                 instance = new Connector("\\");
-                instance.Load("\\config.xml");
+                instance.Load("../../vendor/config.xml");
             }
             return instance;
         }
